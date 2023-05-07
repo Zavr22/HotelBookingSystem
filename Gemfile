@@ -48,3 +48,5 @@ group :development do
 end
 
 gem "graphql"
+
+gem 'bcrypt', '~> 3.1.13'
