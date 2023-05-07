@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  capacity: 1
+  apart_class: MyString
+  duration: 1
+
+two:
+  user: two
+  capacity: 1
+  apart_class: MyString
+  duration: 1

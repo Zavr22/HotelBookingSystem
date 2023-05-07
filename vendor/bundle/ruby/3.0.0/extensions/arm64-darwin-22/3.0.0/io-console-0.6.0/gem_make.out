@@ -1,0 +1,23 @@
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/io-console-0.6.0/ext/io/console
+/Users/apple/.rvm/rubies/ruby-3.0.2/bin/ruby extconf.rb
+checking for termios.h... yes
+checking for cfmakeraw() in termios.h... yes
+checking for sys/ioctl.h... yes
+checking for HAVE_RUBY_FIBER_SCHEDULER_H... no
+checking for rb_scheduler_timeout()... no
+creating Makefile
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20230507-74137-cjy252 sitelibdir\=./.gem.20230507-74137-cjy252 clean
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20230507-74137-cjy252 sitelibdir\=./.gem.20230507-74137-cjy252
+compiling console.c
+linking shared-object io/console.bundle
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20230507-74137-cjy252 sitelibdir\=./.gem.20230507-74137-cjy252 install
+/opt/homebrew/opt/coreutils/bin/ginstall -c -m 0755 console.bundle ./.gem.20230507-74137-cjy252/io
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/io-console-0.6.0/ext/io/console
+make DESTDIR\= sitearchdir\=./.gem.20230507-74137-cjy252 sitelibdir\=./.gem.20230507-74137-cjy252 clean

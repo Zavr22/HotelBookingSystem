@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  request: one
+  room_id: 1
+  amount_due: 1.5
+  paid: false
+
+two:
+  user: two
+  request: two
+  room_id: 1
+  amount_due: 1.5
+  paid: false
