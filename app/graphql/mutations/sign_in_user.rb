@@ -9,7 +9,7 @@ module Mutations
     field :user, Types::UserType, null: true
 
     def resolve(credentials: nil)
-      # basic validation
+
       return unless credentials
 
 

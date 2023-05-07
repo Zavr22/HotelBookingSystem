@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 module Mutations
   class CreateUser < BaseMutation
-    # often we will need input types for specific mutation
-    # in those cases we can define those input types in the mutation class itself
+
     class AuthProviderSignupData < Types::BaseInputObject
       argument :credentials, Types::AuthCredentialsInput, required: false
     end
