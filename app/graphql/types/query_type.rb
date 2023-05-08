@@ -7,11 +7,14 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    field :all_requests, [RequestType], null: true
+
+    def all_requests
+      return raise GraphQL::ExecutionError, "You need to be admin to perform this action" unless User.find_by(id: context[:current_user]&.id)&.role == "admin"
+
+      Request.all
     end
+
+
   end
 end
