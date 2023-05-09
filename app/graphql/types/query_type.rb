@@ -8,11 +8,20 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :all_requests, [RequestType], null: true
+    field :get_users_requests, [RequestType], null:true
 
     def all_requests
       return raise GraphQL::ExecutionError, "You need to be admin to perform this action" unless User.find_by(id: context[:current_user]&.id)&.role == "admin"
 
       Request.all
+    end
+
+    def get_users_requests
+      context[:current_user].nil? do
+        raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
+      end
+
+      Request.where(user_id: context[:current_user]&.id).all
     end
 
 
