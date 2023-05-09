@@ -1,3 +1,4 @@
+require 'rake/promise'
 class HotelSystemSchema < GraphQL::Schema
   mutation(Types::MutationType)
   query(Types::QueryType)
@@ -16,9 +17,10 @@ class HotelSystemSchema < GraphQL::Schema
 
   # Union and Interface Resolution
   def self.resolve_type(abstract_type, obj, ctx)
-    # TODO: Implement this method
-    # to return the correct GraphQL object type for `obj`
-    raise(GraphQL::RequiredImplementationMissingError)
+    type_class = "::Types::#{object.class}Type".safe_constantize
+    raise ArgumentError, "Cannot resolve type for class #{object.class.name}" unless type_class.present?
+
+    type_class
   end
 
   # Stop validating when it encounters this many errors:
@@ -37,4 +39,7 @@ class HotelSystemSchema < GraphQL::Schema
     # For example, use Rails' GlobalID library (https://github.com/rails/globalid):
     GlobalID.find(global_id)
   end
+
+
+
 end

@@ -83,6 +83,8 @@ GEM
       railties
       sprockets-rails
     graphql (1.13.19)
+    graphql-query-resolver (0.2.0)
+      graphql (~> 1.0, >= 1.0.0)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -178,6 +180,7 @@ DEPENDENCIES
   debug
   graphiql-rails
   graphql
+  graphql-query-resolver
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)

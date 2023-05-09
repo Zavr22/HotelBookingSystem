@@ -53,3 +53,6 @@ gem 'bcrypt', '~> 3.1.13'
 
 gem 'search_object_graphql', '0.3.1'
 
+gem 'graphql-query-resolver'
+
+

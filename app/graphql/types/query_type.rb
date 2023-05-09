@@ -1,3 +1,5 @@
+require_relative '../resolvers/requests_search'
+
 module Types
   class QueryType < Types::BaseObject
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
@@ -7,8 +9,8 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    field :all_requests, [RequestType], null: true
-    field :get_users_invoices, [RequestType], null:true
+    field :all_requests, [RequestType], null: true, resolver: Resolvers::RequestsSearch
+    field :get_users_invoices, [InvoiceType], null:true
 
     def all_requests
       return raise GraphQL::ExecutionError, "You need to be admin to perform this action" unless User.find_by(id: context[:current_user]&.id)&.role == "admin"
