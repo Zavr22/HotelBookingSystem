@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-require_relative '../../../app/graphql/types/auth_credentials_input'
+
 require 'test_helper'
 
 class Mutations::CreateUserTest < ActiveSupport::TestCase

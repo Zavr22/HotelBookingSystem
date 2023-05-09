@@ -3,7 +3,6 @@
 module Types
   class RoomType < Types::BaseObject
     field :id, ID, null: false
-    field :invoice_id, Integer, null: false
     field :room_class, String
     field :room_number, Integer
     field :free, Boolean

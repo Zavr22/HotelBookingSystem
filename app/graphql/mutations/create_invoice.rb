@@ -14,9 +14,7 @@ module Mutations
         raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
       end
 
-      if User.where(id: context[:current_user]&.id).select("role") != "admin"
-        raise GraphQL::ExecutionError, "You have to be admin"
-      end
+      return raise GraphQL::ExecutionError, "You have to be admin" unless User.find_by(id: context[:current_user]&.id)&.role == "admin"
 
       Invoice.create!(
         user_id: invoice_cred[:user_id],
