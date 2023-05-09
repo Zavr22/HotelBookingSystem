@@ -1,0 +1,59 @@
+= form_for @search, as: :f, method: :get, url: root_path, html: {id: 'search-form'} do |form|
+  = form.hidden_field :sort
+
+  h1 Listing #{pluralize @search.count, 'post'}
+
+  fieldset
+    = form.search_field :term, placeholder: 'Search term'
+    = date_field_tag 'f[created_after]', @search.created_after
+    = date_field_tag 'f[created_before]', @search.created_before
+    = select_tag 'f[rating]', options_for_select([['All', ''], ['Popular', 'high'], ['Unpopular', 'low']], @search.rating)
+    = form.submit 'Search'
+
+    div.pull-right
+      .btn-group
+        = link_to '15', root_path(per_page: 15, f: @search.params), class: "btn btn-default#{' active' if @search.per_page == 15}"
+        = link_to '25', root_path(per_page: 25, f: @search.params), class: "btn btn-default#{' active' if @search.per_page == 25}"
+        = link_to '55', root_path(per_page: 55, f: @search.params), class: "btn btn-default#{' active' if @search.per_page == 55}"
+
+  table.table.table-striped
+    thead
+      tr
+        th = link_to 'ID', root_path(f: @search.sort_params_for(:id)), class: @search.sort?(:id) && 'active'
+        th = form.label :title, 'Title'
+        th = form.label :user_id, 'Author'
+        th = form.label :category_name, 'Category'
+        th = link_to 'Views', root_path(f: @search.sort_params_for(:views_count)), class: @search.sort?(:views_count) && 'active'
+        th = link_to 'Likes', root_path(f: @search.sort_params_for(:likes_count)), class: @search.sort?(:likes_count) && 'active'
+        th = link_to 'Comments', root_path(f: @search.sort_params_for(:comments_count)), class: @search.sort?(:comments_count) && 'active'
+        th = form.label :published, 'Published?'
+        th = link_to 'Created at', root_path(f: @search.sort_params_for(:created_at)), class: @search.sort?(:created_at) && 'active'
+      tr
+        th
+        th = form.text_field :title
+        th = form.select :user_id, User.all.map { |u| [u.name, u.id] }, include_blank: true
+        th = form.select :category_name, Post.pluck(Arel.sql('DISTINCT category_name')), include_blank: true
+        th
+        th
+        th
+        th = form.check_box :published
+        th
+    tbody
+      - if @search.results?
+        - @search.results.each do |post|
+          tr
+            td width="1%"
+              span.label.label-primary ##{post.id}
+            td = post.title
+            td = post.user_name
+            td = post.category_name
+            td = post.views_count
+            td = post.likes_count
+            td = post.comments_count
+            td = post.published ? 'Yes' : 'No'
+            td = l post.created_at, format: :short
+      - else
+        tr
+          td.empty colspan="8" No posts found
+
+  .pull-right = will_paginate @search.results, renderer: BootstrapPagination::Rails

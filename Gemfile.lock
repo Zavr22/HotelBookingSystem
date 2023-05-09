@@ -82,7 +82,7 @@ GEM
     graphiql-rails (1.9.0)
       railties
       sprockets-rails
-    graphql (2.0.21)
+    graphql (1.13.19)
     i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -149,6 +149,10 @@ GEM
     rake (13.0.6)
     reline (0.3.3)
       io-console (~> 0.5)
+    search_object (1.2.5)
+    search_object_graphql (0.3.1)
+      graphql (~> 1.8)
+      search_object (~> 1.2.2)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -177,6 +181,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
+  search_object_graphql (= 0.3.1)
   tzinfo-data
 
 RUBY VERSION

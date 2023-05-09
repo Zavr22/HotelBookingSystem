@@ -1,0 +1,51 @@
+require: rubocop-rspec
+
+AllCops:
+  Exclude:
+    - example/db/**/*
+    - example/config/**/*
+    - search_object.gemspec
+
+# Disables "Line is too long"
+Metrics/LineLength:
+  Enabled: false
+
+# Disables Module has too many lines
+Metrics/ModuleLength:
+  Enabled: false
+
+# Disables "Missing top-level class documentation comment"
+Style/Documentation:
+  Enabled: false
+
+# Disables "Use each_with_object instead of inject"
+Style/EachWithObject:
+  Enabled: false
+
+# Disables "Prefer reduce over inject."
+Style/CollectionMethods:
+  Enabled: false
+
+# Disables "Avoid the use of double negation (!!)."
+Style/DoubleNegation:
+  Enabled: false
+
+# Disables "Block has too many lines."
+Metrics/BlockLength:
+  Enabled: false
+
+# Disables "Assignment Branch Condition size for field_options is too high."
+Metrics/AbcSize:
+  Enabled: false
+
+# Disables "Method has too many line."
+Metrics/MethodLength:
+  Enabled: false
+
+# Disables "Example has too many lines."
+RSpec/ExampleLength:
+  Enabled: false
+
+# Disables "Too many expectations."
+RSpec/MultipleExpectations:
+  Enabled: false
