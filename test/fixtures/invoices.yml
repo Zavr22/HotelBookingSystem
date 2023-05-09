@@ -1,15 +1,29 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  request: one
+two:
+  user_id: 2
+  request_id: 3
+  room_id: 3
+  amount_due: 300.00
+  paid: true
+
+invoice1:
+  user_id: 1
+  request_id: 1
   room_id: 1
-  amount_due: 1.5
+  amount_due: 100.00
   paid: false
 
-two:
-  user: two
-  request: two
-  room_id: 1
-  amount_due: 1.5
+invoice2:
+  user_id: 1
+  request_id: 2
+  room_id: 2
+  amount_due: 200.00
   paid: false
+
+invoice3:
+  user_id: 2
+  request_id: 3
+  room_id: 3
+  amount_due: 300.00
+  paid: true

@@ -9,3 +9,8 @@ two:
   login: MyString
   password: MyString
   role: MyString
+
+admin:
+  login: "testAdmin"
+  password: "sdklmc"
+  role: "admin"
