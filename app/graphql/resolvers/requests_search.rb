@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'search_object'
 require 'search_object/plugin/graphql'
 require_relative '../types/query_type'
 
 require 'graphql/query_resolver'
 
+# class RequestSearch contains methods to filter requests
 class Resolvers::RequestsSearch
-
   class << self
     def validate_directive_argument(arg_defn, value)
       # empty method body
@@ -17,6 +19,7 @@ class Resolvers::RequestsSearch
   scope { Request.all }
   type types[Types::RequestType]
 
+  # class RequestFilter is used for declare argument user_id for filtering
   class RequestFilter < ::Types::BaseInputObject
     argument :user_id, Integer, required: false
   end
@@ -36,11 +39,11 @@ class Resolvers::RequestsSearch
   end
 
   def fetch_results
-    role = User.where(id: context[:current_user]&.id).select("role")
-    if role == "admin"
+    role = User.where(id: context[:current_user]&.id).select('role')
+    if role == 'admin'
       super
-    elsif role == "user"
-      raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
+    elsif role == 'user'
+      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
 
     end
   end

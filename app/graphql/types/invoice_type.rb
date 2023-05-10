@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Types
+  # class InvoiceType
   class InvoiceType < Types::BaseObject
     field :id, ID, null: false
     field :user_id, Integer, null: false

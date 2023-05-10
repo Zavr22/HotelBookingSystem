@@ -1,29 +1,27 @@
 # frozen_string_literal: true
 
 module Mutations
+  # class CreateRequest contains method which creates request
   class CreateRequest < BaseMutation
     null true
 
-    argument :reqCredentials, Types::RequestCredentialsInput, required: false
+    argument :req_credentials, Types::RequestCredentialsInput, required: false
 
     type Types::RequestType
 
-    def resolve(reqCredentials: nil )
-
-      return unless reqCredentials
+    def resolve(req_credentials: nil)
+      return unless req_credentials
 
       context[:current_user].nil? do
-        raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
+        raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
       end
 
       Request.create!(
-        capacity: reqCredentials[:capacity],
-        apart_class: reqCredentials[:apart_class],
-        duration: reqCredentials[:duration],
+        capacity: req_credentials[:capacity],
+        apart_class: req_credentials[:apart_class],
+        duration: req_credentials[:duration],
         user: context[:current_user]
       )
-
     end
   end
 end
-

@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Types
+  # class RequestCredentialsInput
   class RequestCredentialsInput < BaseInputObject
     graphql_name 'REQUEST_CREDENTIALS_INPUT'
 

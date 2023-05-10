@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Types
+  # class InvoiceCredentialsInput
   class InvoiceCredentialsInput < BaseInputObject
 
     graphql_name 'INVOICE_INPUT_CREDENTIALS'

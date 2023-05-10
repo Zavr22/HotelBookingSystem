@@ -1,11 +1,10 @@
 # frozen_string_literal: true
+
 require 'search_object'
 require 'search_object/plugin/graphql'
 
-
+# class Invoice search contains filter for invoices
 class Resolvers::InvoiceSearch
-
-
   include SearchObject.module(:graphql)
 
   class << self
@@ -14,14 +13,16 @@ class Resolvers::InvoiceSearch
     end
   end
 
-  scope {Invoice.all}
+  scope { Invoice.all }
 
   type types[Types::InvoiceType]
 
+  # class InvoiceFilter is used to declare argument user_id for filtering
   class InvoiceFilter < ::Types::BaseInputObject
     argument :user_id, Integer, required: false
   end
 
+  # class InvoiceOrderBy is used to declare values for sorting invoices by date
   class InvoiceOrderBy < ::Types::BaseEnum
     value 'createdAt_ASC'
     value 'createdAt_DESC'
@@ -37,10 +38,9 @@ class Resolvers::InvoiceSearch
 
   def normalize_filters(value, branches = [])
     scope = Request.all
-    scope = scope.where('user_id =?', "#{value[:user_id]}") if value[:user_id]
+    scope = scope.where('user_id =?', '#{value[:user_id]}') if value[:user_id]
 
     branches << scope
-
 
     branches
   end
@@ -55,14 +55,12 @@ class Resolvers::InvoiceSearch
 
   def fetch_results
     role = User.find_by(id: context[:current_user]&.id)&.role
-    if role == "admin"
+    if role == 'admin'
       super
-    elsif role == "user"
+    elsif role == 'user'
       super.where(user_id: context[:current_user]&.id)
     else
-      raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
+      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
     end
   end
-
 end
-

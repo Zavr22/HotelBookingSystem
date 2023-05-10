@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Types
+  # class RoomType
   class RoomType < Types::BaseObject
     field :id, ID, null: false
     field :room_class, String

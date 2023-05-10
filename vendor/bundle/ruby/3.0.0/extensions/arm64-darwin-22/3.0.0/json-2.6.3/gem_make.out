@@ -1,0 +1,16 @@
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext/json
+/Users/apple/.rvm/rubies/ruby-3.0.2/bin/ruby extconf.rb
+creating Makefile
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230510-27173-9crgia sitelibdir\=./.gem.20230510-27173-9crgia clean
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230510-27173-9crgia sitelibdir\=./.gem.20230510-27173-9crgia
+make: Nothing to be done for `all'.
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230510-27173-9crgia sitelibdir\=./.gem.20230510-27173-9crgia install
+
+current directory: /Users/apple/Documents/Programming/HotelRuby/HotelSystem/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext/json
+make DESTDIR\= sitearchdir\=./.gem.20230510-27173-9crgia sitelibdir\=./.gem.20230510-27173-9crgia clean

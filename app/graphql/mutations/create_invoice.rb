@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 module Mutations
+  # class CreateInvoice is a class which contains method creating invoice by admin
   class CreateInvoice < BaseMutation
     null true
 
@@ -7,14 +9,17 @@ module Mutations
 
     type Types::InvoiceType
 
+    # @param [nil] invoice_cred
     def resolve(invoice_cred: nil)
       return unless invoice_cred
 
       context[:current_user].nil? do
-        raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
+        raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
       end
 
-      return raise GraphQL::ExecutionError, "You have to be admin" unless User.find_by(id: context[:current_user]&.id)&.role == "admin"
+      unless User.find_by(id: context[:current_user]&.id)&.role == 'admin'
+        return raise GraphQL::ExecutionError, 'You have to be admin'
+      end
 
       Invoice.create!(
         user_id: invoice_cred[:user_id],
@@ -23,9 +28,6 @@ module Mutations
         amount_due: invoice_cred[:amount_due],
         paid: false
       )
-
-
     end
-
   end
 end

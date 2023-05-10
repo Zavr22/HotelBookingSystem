@@ -1,5 +1,7 @@
 # frozen_string_literal: true
+
 module Types
+  # class AuthCredentialsInput
   class AuthCredentialsInput < Types::BaseInputObject
 
     graphql_name 'AUTH_PROVIDER_CREDENTIALS'

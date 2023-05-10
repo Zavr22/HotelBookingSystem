@@ -1,7 +1,9 @@
 # frozen_string_literal: true
-module Mutations
-  class CreateUser < BaseMutation
 
+module Mutation
+  # CreateUser is a class which contains method to create user
+  class CreateUser < BaseMutation
+    # class AuthProviderSignupData is used to declare argument credentials
     class AuthProviderSignupData < Types::BaseInputObject
       argument :credentials, Types::AuthCredentialsInput, required: false
     end
@@ -19,5 +21,3 @@ module Mutations
     end
   end
 end
-
-
