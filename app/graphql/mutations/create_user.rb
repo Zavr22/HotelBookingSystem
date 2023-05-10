@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mutation
+module Mutations
   # CreateUser is a class which contains method to create user
   class CreateUser < BaseMutation
     # class AuthProviderSignupData is used to declare argument credentials

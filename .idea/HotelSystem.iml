@@ -206,20 +206,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="ast (vbundled(2.4.2)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/ast-2.4.2/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/ast-2.4.2/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="bcrypt (vbundled(3.1.18)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -369,6 +355,31 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="diff-lcs (vbundled(1.5.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/docs" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/spec" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/docs" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/spec" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/bin" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/docs" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/diff-lcs-1.5.0/spec" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="erubi (vbundled(1.12.0)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -379,6 +390,34 @@
         <JAVADOC />
         <SOURCES>
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/erubi-1.12.0/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="factory_bot (vbundled(6.2.1)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/factory_bot-6.2.1/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/factory_bot-6.2.1/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="factory_bot_rails (vbundled(6.2.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/factory_bot_rails-6.2.0/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/factory_bot_rails-6.2.0/lib" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -508,25 +547,6 @@
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/irb-1.6.4/doc" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/irb-1.6.4/exe" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/irb-1.6.4/man" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="json (vbundled(2.6.3)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/lib" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/json-2.6.3/ext" />
         </excluded>
       </library>
     </orderEntry>
@@ -797,39 +817,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="parallel (vbundled(1.23.0)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parallel-1.23.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parallel-1.23.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="parser (vbundled(3.2.2.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parser-3.2.2.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parser-3.2.2.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parser-3.2.2.1/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parser-3.2.2.1/lib" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/parser-3.2.2.1/bin" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="pg (vbundled(1.5.3)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -1026,20 +1013,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rainbow (vbundled(3.1.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rainbow-3.1.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rainbow-3.1.1/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="rake (vbundled(13.0.6)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -1062,20 +1035,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="regexp_parser (vbundled(2.8.0)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/regexp_parser-2.8.0/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/regexp_parser-2.8.0/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="reline (vbundled(0.3.3)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -1090,73 +1049,77 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rexml (vbundled(3.2.5)) [path][gem]" type="rubylib">
+      <library name="rspec-core (vbundled(3.9.3)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rexml-3.2.5/doc" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rexml-3.2.5/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-core-3.9.3/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-core-3.9.3/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rexml-3.2.5/doc" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rexml-3.2.5/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-core-3.9.3/exe" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-core-3.9.3/lib" />
         </SOURCES>
         <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rexml-3.2.5/doc" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-core-3.9.3/exe" />
         </excluded>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="rubocop (vbundled(1.50.2)) [path][gem]" type="rubylib">
+      <library name="rspec-expectations (vbundled(3.9.4)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/exe" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/assets" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/config" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-expectations-3.9.4/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/exe" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/assets" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/config" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/exe" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-1.50.2/assets" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="rubocop-ast (vbundled(1.28.1)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-ast-1.28.1/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rubocop-ast-1.28.1/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-expectations-3.9.4/lib" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="ruby-progressbar (vbundled(1.13.0)) [path][gem]" type="rubylib">
+      <library name="rspec-mocks (vbundled(3.9.1)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
         </properties>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/ruby-progressbar-1.13.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-mocks-3.9.1/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/ruby-progressbar-1.13.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-mocks-3.9.1/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="rspec-rails (vbundled(3.9.1)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-rails-3.9.1/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-rails-3.9.1/lib" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="rspec-support (vbundled(3.9.4)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-support-3.9.4/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/rspec-support-3.9.4/lib" />
         </SOURCES>
       </library>
     </orderEntry>
@@ -1285,25 +1248,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="unicode-display_width (vbundled(2.4.2)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/unicode-display_width-2.4.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/unicode-display_width-2.4.2/data" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/unicode-display_width-2.4.2/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/unicode-display_width-2.4.2/data" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/unicode-display_width-2.4.2/data" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="websocket-driver (vbundled(0.7.5)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -1367,6 +1311,7 @@
         <option value="benchmark" />
         <option value="channel" />
         <option value="controller" />
+        <option value="factory_bot:model" />
         <option value="generator" />
         <option value="graphql:enum" />
         <option value="graphql:input" />
@@ -1389,6 +1334,20 @@
         <option value="migration" />
         <option value="model" />
         <option value="resource" />
+        <option value="rspec:controller" />
+        <option value="rspec:feature" />
+        <option value="rspec:generators" />
+        <option value="rspec:helper" />
+        <option value="rspec:install" />
+        <option value="rspec:integration" />
+        <option value="rspec:job" />
+        <option value="rspec:mailer" />
+        <option value="rspec:model" />
+        <option value="rspec:observer" />
+        <option value="rspec:request" />
+        <option value="rspec:scaffold" />
+        <option value="rspec:system" />
+        <option value="rspec:view" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="system_test" />
@@ -1418,6 +1377,7 @@
         <option value="benchmark" />
         <option value="channel" />
         <option value="controller" />
+        <option value="factory_bot:model" />
         <option value="generator" />
         <option value="graphql:enum" />
         <option value="graphql:input" />
@@ -1440,6 +1400,20 @@
         <option value="migration" />
         <option value="model" />
         <option value="resource" />
+        <option value="rspec:controller" />
+        <option value="rspec:feature" />
+        <option value="rspec:generators" />
+        <option value="rspec:helper" />
+        <option value="rspec:install" />
+        <option value="rspec:integration" />
+        <option value="rspec:job" />
+        <option value="rspec:mailer" />
+        <option value="rspec:model" />
+        <option value="rspec:observer" />
+        <option value="rspec:request" />
+        <option value="rspec:scaffold" />
+        <option value="rspec:system" />
+        <option value="rspec:view" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="system_test" />
@@ -1639,6 +1613,14 @@
           <RakeTaskImpl description="Prints out your Rack middleware stack" fullCommand="middleware" id="middleware" />
           <RakeTaskImpl description="Restart app by touching tmp/restart.txt" fullCommand="restart" id="restart" />
           <RakeTaskImpl description="Generate a cryptographically secure secret key (this is typically used to generate a secret for cookie sessions)" fullCommand="secret" id="secret" />
+          <RakeTaskImpl description="Run all specs in spec directory (excluding plugin specs)" fullCommand="spec" id="spec" />
+          <RakeTaskImpl id="spec">
+            <subtasks>
+              <RakeTaskImpl description="Run the code examples in spec/graphql" fullCommand="spec:graphql" id="graphql" />
+              <RakeTaskImpl description="" fullCommand="spec:prepare" id="prepare" />
+              <RakeTaskImpl description="" fullCommand="spec:statsetup" id="statsetup" />
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />
           <RakeTaskImpl description="Runs all tests in test folder except system ones" fullCommand="test" id="test" />
           <RakeTaskImpl id="test">

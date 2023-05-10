@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 require_relative '../mutations/create_user'
 require_relative '../mutations/sign_in_user'
 require_relative '../mutations/create_request'

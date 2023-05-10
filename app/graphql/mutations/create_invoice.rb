@@ -9,7 +9,6 @@ module Mutations
 
     type Types::InvoiceType
 
-    # @param [nil] invoice_cred
     def resolve(invoice_cred: nil)
       return unless invoice_cred
 
