@@ -35,7 +35,7 @@ module Resolvers
           resolver.instance_variable_set(:@context, { current_user: admin })
           result = resolver.fetch_results
 
-          invoices = result.to_a # Преобразуйте ActiveRecord::Relation в массив
+          invoices = result.to_a
 
           expect(invoices).not_to be_empty
           expect(invoices.length).to eq(Invoice.count)
