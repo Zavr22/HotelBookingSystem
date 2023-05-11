@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../resolvers/requests_search'
-
 module Types
   # class QueryType
   class QueryType < Types::BaseObject
@@ -16,12 +14,21 @@ module Types
     field :all_invoices, [InvoiceType], null: true, resolver: Resolvers::InvoiceSearch
 
     def all_requests
-      if User.where(id: context[:current_user]&.id).select('role') != 'admin'
-        raise GraphQL::ExecutionError, 'You need to be admin to perform this action'
-      end
+      current_user_id = context[:current_user]&.id
 
-      Request.all
+      if current_user_id
+        user = User.find_by(id: current_user_id)
+
+        if user && user.role == 'admin'
+          Request.all
+        else
+          raise GraphQL::ExecutionError, 'You need to be admin to perform this action'
+        end
+      else
+        raise GraphQL::ExecutionError, 'You need to be logged in to perform this action'
+      end
     end
+
 
     def all_invoices
       raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' unless context[:current_user]

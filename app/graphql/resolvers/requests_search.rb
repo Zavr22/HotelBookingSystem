@@ -2,8 +2,6 @@
 
 require 'search_object'
 require 'search_object/plugin/graphql'
-require_relative '../types/query_type'
-
 require 'graphql/query_resolver'
 
 # class RequestSearch contains methods to filter requests
@@ -39,12 +37,18 @@ class Resolvers::RequestsSearch
   end
 
   def fetch_results
-    role = User.where(id: context[:current_user]&.id).select('role')
-    if role == 'admin'
-      super
-    elsif role == 'user'
-      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
+    current_user_id = context[:current_user]&.id
 
+    if current_user_id
+      user = User.find_by(id: current_user_id)
+
+      if user && user.role == 'admin'
+        Request.all
+      else
+        raise GraphQL::ExecutionError, 'You need to be admin to perform this action'
+      end
+    else
+      raise GraphQL::ExecutionError, 'You need to be logged in to perform this action'
     end
   end
 end
