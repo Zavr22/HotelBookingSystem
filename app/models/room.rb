@@ -1,3 +1,3 @@
 class Room < ApplicationRecord
-  belongs_to :invoice, optional: true
+  has_one :invoice
 end

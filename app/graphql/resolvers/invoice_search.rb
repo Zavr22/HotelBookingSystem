@@ -37,8 +37,8 @@ class Resolvers::InvoiceSearch
   end
 
   def normalize_filters(value, branches = [])
-    scope = Request.all
-    scope = scope.where('user_id =?', '#{value[:user_id]}') if value[:user_id]
+    scope = Invoice.all
+    scope = scope.where(user_id: value[:user_id]) if value[:user_id]
 
     branches << scope
 

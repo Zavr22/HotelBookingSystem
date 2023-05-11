@@ -1,5 +1,5 @@
 class Invoice < ApplicationRecord
   belongs_to :user
   belongs_to :request
-  has_one :room, dependent: :destroy
+  belongs_to :room
 end

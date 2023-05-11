@@ -24,10 +24,10 @@ module Types
     end
 
     def all_invoices
+      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' unless context[:current_user]
+
       user_id = context[:current_user]&.id
       role = User.where(id: context[:current_user]&.id).select('role')
-
-      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' if context[:current_user].nil?
 
       if role == 'admin'
         Invoice.all
