@@ -12,7 +12,7 @@ module Mutations
     def resolve(req_credentials: nil)
       return unless req_credentials
 
-      context[:current_user].nil? do
+      if context[:current_user].nil?
         raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
       end
 
@@ -22,6 +22,8 @@ module Mutations
         duration: req_credentials[:duration],
         user: context[:current_user]
       )
+
     end
   end
 end
+
