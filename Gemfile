@@ -42,13 +42,16 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'rubocop', require: false
 end
 
 group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "graphiql-rails"
+
 end
+
 
 gem "graphql"
 
