@@ -13,7 +13,8 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = {
       session: session,
-      current_user: current_user
+      current_user: current_user,
+      pundit: self
     }
     result = HotelSystemSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
@@ -32,7 +33,7 @@ class GraphqlController < ApplicationController
     token = crypt.decrypt_and_verify session[:token]
     user_id = token.gsub('user-id:', '').to_i
     User.find user_id
-  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    rescue ActiveSupport::MessageVerifier::InvalidSignature
     nil
   end
 

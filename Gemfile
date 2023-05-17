@@ -52,6 +52,7 @@ group :development do
 
 end
 
+gem "pundit"
 
 gem "graphql"
 

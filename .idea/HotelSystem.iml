@@ -1012,6 +1012,27 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="pundit (vbundled(2.3.0)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/spec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/config" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/spec" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/config" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pundit-2.3.0/spec" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="racc (vbundled(1.6.2)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -1581,6 +1602,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pundit:install" />
+        <option value="pundit:policy" />
         <option value="resource" />
         <option value="rspec:controller" />
         <option value="rspec:feature" />
@@ -1592,6 +1615,7 @@
         <option value="rspec:mailer" />
         <option value="rspec:model" />
         <option value="rspec:observer" />
+        <option value="rspec:policy" />
         <option value="rspec:request" />
         <option value="rspec:scaffold" />
         <option value="rspec:system" />
@@ -1611,6 +1635,7 @@
         <option value="test_unit:mailer" />
         <option value="test_unit:model" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:policy" />
         <option value="test_unit:scaffold" />
         <option value="test_unit:system" />
       </list>
@@ -1647,6 +1672,8 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pundit:install" />
+        <option value="pundit:policy" />
         <option value="resource" />
         <option value="rspec:controller" />
         <option value="rspec:feature" />
@@ -1658,6 +1685,7 @@
         <option value="rspec:mailer" />
         <option value="rspec:model" />
         <option value="rspec:observer" />
+        <option value="rspec:policy" />
         <option value="rspec:request" />
         <option value="rspec:scaffold" />
         <option value="rspec:system" />
@@ -1677,6 +1705,7 @@
         <option value="test_unit:mailer" />
         <option value="test_unit:model" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:policy" />
         <option value="test_unit:scaffold" />
         <option value="test_unit:system" />
       </list>

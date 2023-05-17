@@ -6,7 +6,7 @@ module Types
     field :id, ID, null: false
     field :login, String
     field :password, String
-    field :role, String
+    field :role, Enums::UserRoleType, null: false, description: "User permission level."
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :requests, Types::RequestType, null: true
