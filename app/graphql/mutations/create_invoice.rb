@@ -16,9 +16,6 @@ module Mutations
         raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
       end
 
-      unless context[:current_user].admin?
-        return raise GraphQL::ExecutionError, 'You have to be admin'
-      end
 
       Invoice.create!(
         user_id: invoice_cred[:user_id],
@@ -27,6 +24,13 @@ module Mutations
         amount_due: invoice_cred[:amount_due],
         paid: false
       )
+
     end
+  end
+  def authorized?(_object)
+
+    raise GraphQL::ExecutionError, "You aren't allowed to create an invoice" unless InvoicePolicy.new(@context[:current_user], nil).create?
+
+    true
   end
 end
