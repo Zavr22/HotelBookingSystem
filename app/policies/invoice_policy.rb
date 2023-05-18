@@ -14,9 +14,11 @@ class InvoicePolicy < ApplicationPolicy
     user.present?
   end
 
-  private
-
   def user_is_admin?
-    user &&  user&.admin?
+    user && user&.admin?
+  end
+
+  def user_is_authenticated?
+    user.present?
   end
 end

@@ -43,6 +43,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'database_cleaner'
   gem 'rubocop', require: false
+  gem 'standard', require: false
 end
 
 group :development do

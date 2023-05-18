@@ -12,10 +12,9 @@ module Mutations
     def resolve(invoice_cred: nil)
       return unless invoice_cred
 
-      context[:current_user].nil? do
-        raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
-      end
+      raise GraphQL::ExecutionError, "You need to authenticate to perform this action" unless InvoicePolicy.new(@context[:current_user], nil).user_is_authenticated?
 
+      raise GraphQL::ExecutionError, "You have to be admin" unless InvoicePolicy.new(@context[:current_user], nil).user_is_admin?
 
       Invoice.create!(
         user_id: invoice_cred[:user_id],
@@ -24,13 +23,6 @@ module Mutations
         amount_due: invoice_cred[:amount_due],
         paid: false
       )
-
     end
-  end
-  def authorized?(_object)
-
-    raise GraphQL::ExecutionError, "You aren't allowed to create an invoice" unless InvoicePolicy.new(@context[:current_user], nil).create?
-
-    true
   end
 end
