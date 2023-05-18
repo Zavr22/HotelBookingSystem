@@ -6,7 +6,10 @@ class RequestPolicy < ApplicationPolicy
     @request = request
   end
 
-  def user_is_authenticated?
-    user.present?
+  def user_is_regular?
+    user && user&.user?
+  end
+  def user_is_admin?
+    user && user&.admin?
   end
 end

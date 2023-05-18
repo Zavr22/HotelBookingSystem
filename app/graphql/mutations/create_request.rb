@@ -12,8 +12,7 @@ module Mutations
     def resolve(req_credentials: nil)
       return unless req_credentials
 
-      raise GraphQL::ExecutionError, "You need to authenticate to perform this action" unless RequestPolicy.new(@context[:current_user], nil).user_is_authenticated?
-
+      raise GraphQL::ExecutionError, "You need to authenticate to perform this action" if context[:current_user].nil?
       Request.create!(
         capacity: req_credentials[:capacity],
         apart_class: req_credentials[:apart_class],

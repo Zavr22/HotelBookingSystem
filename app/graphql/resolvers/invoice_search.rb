@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'search_object'
-require 'search_object/plugin/graphql'
+require "search_object"
+require "search_object/plugin/graphql"
 
 # class Invoice search contains filter for invoices
 class Resolvers::InvoiceSearch
@@ -24,12 +24,12 @@ class Resolvers::InvoiceSearch
 
   # class InvoiceOrderBy is used to declare values for sorting invoices by date
   class InvoiceOrderBy < ::Types::BaseEnum
-    value 'createdAt_ASC'
-    value 'createdAt_DESC'
+    value "createdAt_ASC"
+    value "createdAt_DESC"
   end
 
   option :filter, type: InvoiceFilter, with: :apply_filter
-  option :orderBy, type: InvoiceOrderBy, default: 'createdAt_DESC'
+  option :orderBy, type: InvoiceOrderBy, default: "createdAt_DESC"
 
   def apply_filter(scope, value)
     branches = normalize_filters(value).reduce { |a, b| a.or(b) }
@@ -46,21 +46,20 @@ class Resolvers::InvoiceSearch
   end
 
   def apply_order_by_with_created_at_asc(scope)
-    scope.order('created_at ASC')
+    scope.order("created_at ASC")
   end
 
   def apply_order_by_with_created_at_desc(scope)
-    scope.order('created_at DESC')
+    scope.order("created_at DESC")
   end
 
   def fetch_results
-    role = User.find_by(id: context[:current_user]&.id)&.role
-    if role == 'admin'
+    if InvoicePolicy.new(@context[:current_user], nil).user_is_admin?
       super
-    elsif role == 'user'
+    elsif InvoicePolicy.new(@context[:current_user], nil).user_is_regular?
       super.where(user_id: context[:current_user]&.id)
     else
-      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
+      raise GraphQL::ExecutionError, "You need to authenticate to perform this action"
     end
   end
 end

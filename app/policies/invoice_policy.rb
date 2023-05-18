@@ -21,4 +21,8 @@ class InvoicePolicy < ApplicationPolicy
   def user_is_authenticated?
     user.present?
   end
+  
+  def user_is_regular?
+    user && user&.user?
+  end
 end
