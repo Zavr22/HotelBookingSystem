@@ -6,7 +6,7 @@ module Types
     implements Interfaces::SomeInterface
     field :user_id, Integer, null: false
     field :capacity, Integer
-    field :apart_class, String
+    field :apart_class, Enums::RoomClassType, null: false, description: "Room class"
     field :duration, Integer
   end
 end
