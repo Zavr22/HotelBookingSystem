@@ -1,4 +1,4 @@
-module Interfaces
+module Types::Interfaces
   module SomeInterface
     include GraphQL::Schema::Interface
 
