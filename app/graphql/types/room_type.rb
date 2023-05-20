@@ -3,7 +3,7 @@
 module Types
   # class RoomType
   class RoomType < Types::BaseObject
-    implements Interfaces::SomeInterface
+    implements ::Types::SomeInterface
     field :room_class, Enums::RoomClassType, null: false, description: "Room class"
     field :room_number, Integer
     field :free, Boolean
