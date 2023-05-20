@@ -15,35 +15,10 @@ module Types
 
     field :all_requests, [RequestType], null: true, resolver: Resolvers::RequestsSearch
     field :all_invoices, [InvoiceType], null: true, resolver: Resolvers::InvoiceSearch
-
-    def all_requests
-      current_user_id = context[:current_user]&.id
-
-      if current_user_id
-        user = User.find_by(id: current_user_id)
-
-        if user && user.role == 'admin'
-          Request.all
-        else
-          raise GraphQL::ExecutionError, 'You need to be admin to perform this action'
-        end
-      else
-        raise GraphQL::ExecutionError, 'You need to be logged in to perform this action'
-      end
-    end
-
-
-    def all_invoices
-      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' unless context[:current_user]
-
-      user_id = context[:current_user]&.id
-      role = User.where(id: context[:current_user]&.id).select('role')
-
-      if role == 'admin'
-        Invoice.all
-      elsif role == 'user'
-        Invoice.where(user_id: user_id)
-      end
+    field :all_users, [UserType], null: false
+    def all_users
+      raise GraphQL::ExecutionError, "You have to be admin to perform this action" unless UserPolicy.new(@context[:current_user], nil).user_is_admin?
+      User.all
     end
   end
 end
