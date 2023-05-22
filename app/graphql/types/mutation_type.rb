@@ -8,7 +8,7 @@ module Types
   # class MutationType
   class MutationType < Types::BaseObject
     field :create_user, mutation: Mutations::CreateUser
-    field :signin_user, mutation: Mutations::SignInUser
+    field :sign_in_user, mutation: Mutations::SignInUser
     field :create_request, mutation: Mutations::CreateRequest
     field :create_invoice, mutation: Mutations::CreateInvoice
   end
