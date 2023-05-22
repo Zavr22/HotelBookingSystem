@@ -3,6 +3,8 @@
 module Types
   # class UserType
   class UserType < Types::BaseObject
+    include GraphQL::Types::Relay::HasNodeField
+    include GraphQL::Types::Relay::HasNodesField
     implements ::Types::SomeInterface
     field :login, String
     field :password, String

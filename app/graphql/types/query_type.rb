@@ -17,7 +17,9 @@ module Types
     field :all_invoices, [InvoiceType], null: true, resolver: Resolvers::InvoiceSearch
     field :all_users, [UserType], null: false
     def all_users
-      raise GraphQL::ExecutionError, "Ypu have to authorize as admin" if context[:current_user].nil?
+      if context[:current_user].nil?
+        raise GraphQL::ExecutionError, "Ypu have to authorize as admin"
+      end
       raise GraphQL::ExecutionError, "You have to be admin to perform this action" unless UserPolicy.new(@context[:current_user], nil).user_is_admin?
       User.all
     end
