@@ -2,8 +2,8 @@
 
 module Types
   # class RequestCredentialsInput
-  class RequestCredentialsInput < BaseInputObject
-    graphql_name 'REQUEST_CREDENTIALS_INPUT'
+  class RequestInput < BaseInputObject
+    graphql_name 'REQUEST_INPUT'
 
     argument :capacity, Integer, required: true
     argument :apart_class, String, required: true

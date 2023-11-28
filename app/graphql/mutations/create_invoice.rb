@@ -5,7 +5,7 @@ module Mutations
   class CreateInvoice < BaseMutation
     null true
 
-    argument :invoice_cred, Types::InvoiceCredentialsInput, required: false
+    argument :invoice_cred, Types::InvoiceInput, required: false
 
     type Types::InvoiceType
 

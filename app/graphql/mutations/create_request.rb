@@ -5,7 +5,7 @@ module Mutations
   class CreateRequest < BaseMutation
     null true
 
-    argument :req_credentials, Types::RequestCredentialsInput, required: false
+    argument :req_credentials, Types::RequestInput, required: false
 
     type Types::RequestType
 

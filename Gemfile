@@ -44,6 +44,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rubocop', require: false
   gem 'standard', require: false
+  gem 'annotate'
 end
 
 group :development do

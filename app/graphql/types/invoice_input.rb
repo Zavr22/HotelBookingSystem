@@ -2,9 +2,9 @@
 
 module Types
   # class InvoiceCredentialsInput
-  class InvoiceCredentialsInput < BaseInputObject
+  class InvoiceInput < BaseInputObject
 
-    graphql_name 'INVOICE_INPUT_CREDENTIALS'
+    graphql_name 'INVOICE_INPUT'
 
     argument :user_id, Integer, required: true
     argument :request_id, Integer, required: true
