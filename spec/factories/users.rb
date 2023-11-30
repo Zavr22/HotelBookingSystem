@@ -13,10 +13,10 @@
 #
 FactoryBot.define do
   factory :user do
-    login { "MyString" }
-    password { "MyString" }
+    login { 'email@example.com' }
+    password { 'MyString' }
     trait :admin do
-      role { "admin" }
+      role { 'admin' }
     end
   end
 end

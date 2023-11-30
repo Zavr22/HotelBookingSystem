@@ -8,7 +8,7 @@ module Types
 
     argument :login, String, required: true
     argument :password, String, required: true
-    argument :role, String, required: false
+    argument :role, String, required: true
 
   end
 end

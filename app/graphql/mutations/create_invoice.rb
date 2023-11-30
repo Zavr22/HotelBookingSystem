@@ -23,6 +23,7 @@ module Mutations
         amount_due: invoice_input[:amount_due],
         paid: false
       )
+      UserInvoiceMailer.new.invoice_email(@context[:current_user])
     end
   end
 end

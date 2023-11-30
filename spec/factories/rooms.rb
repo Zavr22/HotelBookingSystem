@@ -18,6 +18,9 @@ FactoryBot.define do
   factory :room do
     room_class { %w[Economy Standard Luxury].sample }
     room_number { rand(100..999) }
-    free { [true, false].sample }
+    name { 'test' }
+    free_count { rand(1..15) }
+    total_count { 15 }
+    price { rand(100..200) }
   end
 end
