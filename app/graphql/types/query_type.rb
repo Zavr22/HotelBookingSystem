@@ -16,11 +16,14 @@ module Types
     field :all_requests, [RequestType], null: true, resolver: Resolvers::RequestsSearch
     field :all_invoices, [InvoiceType], null: true, resolver: Resolvers::InvoiceSearch
     field :all_users, [UserType], null: false
+    field :all_rooms, [RoomType], null: true, resolver: Resolvers::RoomsResolver
+
     def all_users
       if context[:current_user].nil?
-        raise GraphQL::ExecutionError, "Ypu have to authorize as admin"
+        raise GraphQL::ExecutionError, 'Ypu have to authorize as admin'
       end
-      raise GraphQL::ExecutionError, "You have to be admin to perform this action" unless UserPolicy.new(@context[:current_user], nil).user_is_admin?
+      raise GraphQL::ExecutionError, 'You have to be admin to perform this action' unless UserPolicy.new(@context[:current_user], nil).user_is_admin?
+
       User.all
     end
   end

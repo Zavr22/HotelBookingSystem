@@ -21,4 +21,5 @@
 class Request < ApplicationRecord
   belongs_to :user
   has_one :invoice
+  has_many :rooms
 end

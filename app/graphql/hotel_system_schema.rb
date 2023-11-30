@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rake/promise'
 class HotelSystemSchema < GraphQL::Schema
   mutation(Types::MutationType)

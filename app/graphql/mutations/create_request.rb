@@ -5,18 +5,19 @@ module Mutations
   class CreateRequest < BaseMutation
     null true
 
-    argument :req_credentials, Types::RequestInput, required: false
+    argument :req_input, Types::RequestInput, required: false
 
     type Types::RequestType
 
-    def resolve(req_credentials: nil)
-      return unless req_credentials
+    def resolve(req_input: nil)
+      return unless req_input
 
-      raise GraphQL::ExecutionError, "You need to authenticate to perform this action" if context[:current_user].nil?
+      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' if context[:current_user].nil?
+
       Request.create!(
-        capacity: req_credentials[:capacity],
-        apart_class: req_credentials[:apart_class],
-        duration: req_credentials[:duration],
+        capacity: req_input[:capacity],
+        apart_class: req_input[:apart_class],
+        duration: req_input[:duration],
         user: context[:current_user]
       )
     end
