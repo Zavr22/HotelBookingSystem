@@ -14,11 +14,16 @@ module Mutations
 
       raise GraphQL::ExecutionError, 'You need to authenticate to perform this action' if context[:current_user].nil?
 
+      check_in_date = Date.parse(req_input[:check_in_date])
+      check_out_date = Date.parse(req_input[:check_out_date])
       Request.create!(
         capacity: req_input[:capacity],
         apart_class: req_input[:apart_class],
-        duration: req_input[:duration],
-        user: context[:current_user]
+        user: context[:current_user],
+        check_in_date: check_in_date,
+        check_out_date: check_out_date,
+        duration: check_out_date - check_in_date,
+        room_id: req_input[:room_id]
       )
     end
   end

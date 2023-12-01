@@ -15,6 +15,6 @@
 #  updated_at  :datetime         not null
 #
 class Room < ApplicationRecord
-  has_one :invoice
-  belongs_to :request, optional: true
+  has_many :invoice
+  has_many :request
 end

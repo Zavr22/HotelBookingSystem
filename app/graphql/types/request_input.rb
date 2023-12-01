@@ -7,6 +7,9 @@ module Types
 
     argument :capacity, Integer, required: true
     argument :apart_class, String, required: true
-    argument :duration, Integer, required: true
+    argument :duration, Integer, required: false
+    argument :room_id, Integer, required: true
+    argument :check_in_date, Date, required: true
+    argument :check_out_date, Date, required: true
   end
 end
