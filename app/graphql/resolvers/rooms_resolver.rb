@@ -12,7 +12,7 @@ class Resolvers::RoomsResolver
     end
   end
 
-  scope { Room.all }
+  scope { Room.free }
 
   type types[Types::RoomType]
 
@@ -53,8 +53,12 @@ class Resolvers::RoomsResolver
   end
 
   def fetch_results
-    raise GraphQL::ExecutionError, 'you have to be authenticated' if @context[:current_user].nil? == true
-
-    super
+    if RoomPolicy.new(@context[:current_user], nil).user_is_admin?
+      Room.all
+    elsif RoomPolicy.new(@context[:current_user], nil).user_is_regular?
+      super
+    else
+      raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
+    end
   end
 end

@@ -24,6 +24,8 @@ module Mutations
         paid: false
       )
       UserInvoiceMailer.new.invoice_email(@context[:current_user])
+
+      Room.where(room_id: invoice_input[:room_id]).update_all(free_count: free_count - 1)
     end
   end
 end
