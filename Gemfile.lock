@@ -75,6 +75,7 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.2.2)
+    connection_pool (2.4.1)
     crass (1.0.6)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
@@ -176,6 +177,8 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
+    redis-client (0.18.0)
+      connection_pool
     regexp_parser (2.8.0)
     reline (0.3.3)
       io-console (~> 0.5)
@@ -217,6 +220,11 @@ GEM
     search_object_graphql (0.3.1)
       graphql (~> 1.8)
       search_object (~> 1.2.2)
+    sidekiq (7.2.0)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.14.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -266,6 +274,7 @@ DEPENDENCIES
   rspec-rails (~> 3.8)
   rubocop
   search_object_graphql (= 0.3.1)
+  sidekiq (~> 7.2)
   standard
   tzinfo-data
 
@@ -273,4 +282,4 @@ RUBY VERSION
    ruby 3.0.2p107
 
 BUNDLED WITH
-   2.4.12
+   2.4.20
