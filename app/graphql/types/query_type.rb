@@ -16,7 +16,7 @@ module Types
     field :all_requests, [RequestType], null: true, resolver: Resolvers::RequestsSearch
     field :all_invoices, [InvoiceType], null: true, resolver: Resolvers::InvoiceSearch
     field :all_users, [UserType], null: false
-    field :all_rooms, [RoomType], null: true, resolver: Resolvers::RoomsResolver
+    field :all_rooms, [RoomType], null: true, resolver: Resolvers::RoomsSearch
 
     def all_users
       if context[:current_user].nil?
