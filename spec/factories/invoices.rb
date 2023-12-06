@@ -6,6 +6,7 @@
 #
 #  id         :bigint           not null, primary key
 #  amount_due :float
+#  is_deleted :boolean
 #  paid       :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

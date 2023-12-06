@@ -10,7 +10,7 @@ RSpec.describe RoomCheckJob, type: :job do
       room = FactoryBot.create(:room, free_count: 5)
       user = FactoryBot.create(:user)
       request = FactoryBot.create(:request, check_out_date: Date.yesterday, room: room, user: user)
-      invoice = FactoryBot.create(:invoice, request: request)
+      invoice = FactoryBot.create(:invoice, request: request, is_deleted: false)
 
       Sidekiq::Testing.inline! do
         worker.perform

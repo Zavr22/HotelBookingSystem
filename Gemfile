@@ -64,5 +64,6 @@ gem 'search_object_graphql', '0.3.1'
 
 gem 'graphql-query-resolver'
 
+gem 'sidekiq-cron'
 
 gem 'sidekiq', '~> 7.2'
