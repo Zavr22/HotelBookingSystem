@@ -19,7 +19,7 @@ module Mutations
         raise GraphQL::ExecutionError, 'You have to be admin'
       end
 
-      Room.create!(
+      room = Room.new(
         name: room_input[:name],
         room_class: room_input[:room_class],
         room_number: room_input[:room_number],
@@ -27,6 +27,18 @@ module Mutations
         free_count: room_input[:free_count],
         price: room_input[:price]
       )
+      room.image.attach(room_input[:image]) if room_input[:image]
+      if room.save
+        {
+          room: room,
+          error_message: nil
+        }
+      else
+        {
+          room: nil,
+          error_message: room.errors.full_messages
+        }
+      end
     end
   end
 end

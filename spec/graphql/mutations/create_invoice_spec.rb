@@ -21,7 +21,7 @@ module Mutations
     describe '#resolve' do
       context 'when invoice_cred is valid and user is authenticated admin' do
         it 'creates an invoice' do
-          expect { mutation.resolve(invoice_cred: invoice_input) }.to change { Invoice.count }.by(1)
+          expect { mutation.resolve(invoice_input: invoice_input) }.to change { Invoice.count }.by(1)
         end
       end
 

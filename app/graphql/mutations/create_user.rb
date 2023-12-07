@@ -13,11 +13,22 @@ module Mutations
     type Types::UserType
 
     def resolve(auth_provider: nil)
-      User.create!(
+      user = User.new(
         login: auth_provider&.[](:credentials)&.[](:login),
         password: auth_provider&.[](:credentials)&.[](:password),
         role: auth_provider&.[](:credentials)&.[](:role)
       )
+      if user.save
+        {
+          user: user,
+          error_message: nil
+        }
+      else
+        {
+          user: nil,
+          error_message: user.errors.full_messages
+        }
+      end
     end
   end
 end

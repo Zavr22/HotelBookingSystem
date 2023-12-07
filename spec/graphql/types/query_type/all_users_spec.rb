@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Types::QueryType do
-  describe "allUsers" do
+  describe 'allUsers' do
     let(:admin_user) { FactoryBot.create(:user, :admin) }
     let(:regular_user) { FactoryBot.create(:user) }
     let(:context) { {current_user: admin_user} }
@@ -22,11 +22,11 @@ RSpec.describe Types::QueryType do
     end
 
     before do
-      FactoryBot.create_list(:user, 3, role: "admin")
+      FactoryBot.create_list(:user, 3, role: 'admin')
     end
 
-    it "returns all users" do
-      expect(result.dig("data", "allUsers")&.length).to eq(User.count)
+    it 'returns all users' do
+      expect(result.dig('data', 'allUsers')&.length).to eq(User.count)
 
     end
   end

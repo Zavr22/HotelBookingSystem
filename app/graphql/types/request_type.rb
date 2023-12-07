@@ -11,7 +11,7 @@ module Types
     field :apart_class, Enums::RoomClassType, null: false, description: "Room class"
     field :duration, Integer
     field :room, Types::RoomType
-    field :check_in_date, Date
-    field :check_out_date, Date
+    field :check_in_date, GraphQL::Types::ISO8601Date
+    field :check_out_date, GraphQL::Types::ISO8601Date
   end
 end

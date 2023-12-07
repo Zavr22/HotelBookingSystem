@@ -12,5 +12,9 @@ module Types
     field :free_count, Integer
     field :price, Float
     field :name, String
+    field :image, String, null: true, description: 'URL of the room image'
+    def image
+      object.image_url if object.image.attached?
+    end
   end
 end

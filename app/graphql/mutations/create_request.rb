@@ -16,7 +16,7 @@ module Mutations
 
       check_in_date = Date.parse(req_input[:check_in_date])
       check_out_date = Date.parse(req_input[:check_out_date])
-      Request.create!(
+      request = Request.new(
         capacity: req_input[:capacity],
         apart_class: req_input[:apart_class],
         user: context[:current_user],
@@ -25,6 +25,17 @@ module Mutations
         duration: check_out_date - check_in_date,
         room_id: req_input[:room_id]
       )
+      if request.save
+        {
+          request: request,
+          error_message: nil
+        }
+      else
+        {
+          request: nil,
+          error_message: request.errors.full_messages
+        }
+      end
     end
   end
 end

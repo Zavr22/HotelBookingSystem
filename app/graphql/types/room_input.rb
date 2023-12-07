@@ -11,5 +11,6 @@ module Types
     argument :total_count, Integer, required: true
     argument :free_count, Integer, required: true
     argument :price, Float, required: true
+    argument :image, ApolloUploadServer::Upload, required: false
   end
 end

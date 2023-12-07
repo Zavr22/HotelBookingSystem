@@ -67,3 +67,5 @@ gem 'graphql-query-resolver'
 gem 'sidekiq-cron'
 
 gem 'sidekiq', '~> 7.2'
+
+gem 'apollo_upload_server', '~> 2.1', '>= 2.1.5'

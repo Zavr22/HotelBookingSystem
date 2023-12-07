@@ -12,17 +12,17 @@ module Mutations
         user = perform(
           auth_provider: {
             credentials: {
-              login: "test",
-              password: "123456",
-              role: "admin"
+              login: 'test',
+              password: '123456',
+              role: 'admin'
             }
           }
         )
 
-        expect(user).to be_persisted
-        expect(user.login).to eq('test')
-        expect(user.password).to eq('123456')
-        expect(user.role).to eq('admin')
+        expect(user[:user]).to be_persisted
+        expect(user[:user][:login]).to eq('test')
+        expect(user[:user][:password]).to eq('123456')
+        expect(user[:user][:role]).to eq('admin')
       end
     end
   end

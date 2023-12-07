@@ -16,7 +16,7 @@ module Mutations
       ).user_is_authenticated?
       raise GraphQL::ExecutionError, 'You have to be admin' unless InvoicePolicy.new(@context[:current_user], nil).user_is_admin?
 
-      Invoice.create!(
+      invoice = Invoice.new(
         user_id: invoice_input[:user_id],
         request_id: invoice_input[:request_id],
         room_id: invoice_input[:room_id],
@@ -25,7 +25,17 @@ module Mutations
       )
       UserInvoiceMailer.new.invoice_email(@context[:current_user])
       Room.where(room_id: invoice_input[:room_id]).update_all(free_count: free_count - 1)
-
+      if invoice.save
+        {
+          invoice: invoice,
+          error_message: nil
+        }
+      else
+        {
+          invoice: nil,
+          error_message: invoice.errors.full_messages
+        }
+      end
     end
   end
 end
