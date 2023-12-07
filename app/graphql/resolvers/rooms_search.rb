@@ -41,10 +41,15 @@ module Resolvers
     end
 
     def normalize_filters(value, branches = [])
-      scope = Room.all
+      scope = Room.free
       scope = scope.where(room_class: value[:room_class]) if value[:room_class]
-      scope = scope.where('price >= ?', value[:min_price]) if value[:min_price]
-      scope = scope.where('price <= ?', value[:max_price]) if value[:max_price]
+      if value[:min_price] && value[:max_price]
+        scope = scope.where('price BETWEEN ? AND ?', value[:min_price], value[:max_price])
+      elsif value[:min_price]
+        scope = scope.where('price >= ?', value[:min_price])
+      elsif value[:max_price]
+        scope = scope.where('price <= ?', value[:max_price])
+      end
 
       branches << scope
 
