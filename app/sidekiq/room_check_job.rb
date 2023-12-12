@@ -5,23 +5,13 @@ class RoomCheckJob
   include Sidekiq::Job
 
   def perform
-    invoices = Invoice.all.where(is_deleted: false)
+    Invoice.transaction do
+      invoices = Invoice.where(is_deleted: false).where('request.check_out_date < ?', Date.today)
+      room_ids = invoices.joins(:request).pluck(:room_id)
 
-    invoices.each do |invoice|
-      if invoice.request.check_out_date < Date.today
-        update_room_free_count(invoice.request.room)
-        update_invoice_status(invoice)
-      end
+      invoices.update_all(is_deleted: true)
+      Room.where(id: room_ids).update_all('free_count = free_count + 1')
     end
   end
-
-  private
-
-  def update_room_free_count(room)
-    room.update(free_count: room.free_count + 1)
-  end
-  
-  def update_invoice_status(invoice)
-    invoice.update(is_deleted: true)
-  end
 end
+

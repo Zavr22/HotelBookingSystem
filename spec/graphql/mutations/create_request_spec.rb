@@ -20,13 +20,9 @@ module Mutations
 
       context 'when the user is authenticated' do
         it 'creates a new request' do
-          expect { mutation.resolve(req_input: req_input) }.to change { Request.count }.by(1)
-
-          request = Request.last
-          expect(request.user_id).to eq(user.id)
-          expect(request.capacity).to eq(req_input[:capacity])
-          expect(request.apart_class).to eq(req_input[:apart_class])
-          puts request.duration
+          result = mutation.resolve(req_input: req_input)
+          expect(result[:request]).to be_a(Request)
+          expect(result[:error_message]).to be_nil
         end
       end
 

@@ -36,7 +36,7 @@ module Resolvers
 
           result = resolver.fetch_results
 
-          expect(result).to eq(Room.all)
+          expect(result).to eq(Room.free)
         end
       end
 

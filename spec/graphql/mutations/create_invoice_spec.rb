@@ -22,6 +22,8 @@ module Mutations
       context 'when invoice_cred is valid and user is authenticated admin' do
         it 'creates an invoice' do
           expect { mutation.resolve(invoice_input: invoice_input) }.to change { Invoice.count }.by(1)
+          expect(result[:invoice]).to be_a(Invoice)
+          expect(result[:error_message]).to be_nil
         end
       end
 

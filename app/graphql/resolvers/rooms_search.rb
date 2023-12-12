@@ -2,10 +2,10 @@
 
 require 'search_object'
 require 'search_object/plugin/graphql'
+require 'graphql/query_resolver'
 
 module Resolvers
   class RoomsSearch
-    include SearchObject.module(:graphql)
 
     class << self
       def validate_directive_argument(arg_defn, value)
@@ -13,7 +13,9 @@ module Resolvers
       end
     end
 
-    scope { Room.free }
+    include SearchObject.module(:graphql)
+
+    scope { Room.all }
 
     type types[Types::RoomType]
 
@@ -24,6 +26,8 @@ module Resolvers
       argument :max_price, Float, required: false
     end
 
+    option :filter, type: RoomsFilter, with: :apply_filter
+
     # class RoomSort defines values for sorting rooms
     class RoomSort < ::Types::BaseEnum
       value 'price_ASC'
@@ -32,7 +36,6 @@ module Resolvers
       value 'room_class_DESC'
     end
 
-    option :filter, type: RoomsFilter, with: :apply_filter
     option :sort, type: RoomSort, default: 'price_ASC'
 
     def apply_filter(scope, value)
@@ -42,14 +45,10 @@ module Resolvers
 
     def normalize_filters(value, branches = [])
       scope = Room.free
-      scope = scope.where(room_class: value[:room_class]) if value[:room_class]
-      if value[:min_price] && value[:max_price]
-        scope = scope.where('price BETWEEN ? AND ?', value[:min_price], value[:max_price])
-      elsif value[:min_price]
-        scope = scope.where('price >= ?', value[:min_price])
-      elsif value[:max_price]
-        scope = scope.where('price <= ?', value[:max_price])
-      end
+      scope = scope.where(room_class: value[:room_class].to_s) if value[:room_class]
+      scope = scope.where(price: value[:min_price]..value[:max_price]) if value[:min_price] && value[:max_price]
+      scope = scope.where('rooms.price >= ?', value[:min_price]) if value[:min_price]
+      scope = scope.where('rooms.price <= ?', value[:max_price]) if value[:max_price]
 
       branches << scope
 
@@ -74,9 +73,9 @@ module Resolvers
 
     def fetch_results
       if RoomPolicy.new(@context[:current_user], nil).user_is_admin?
-        Room.all
-      elsif RoomPolicy.new(@context[:current_user], nil).user_is_regular?
         super
+      elsif RoomPolicy.new(@context[:current_user], nil).user_is_regular?
+        super.free
       else
         raise GraphQL::ExecutionError, 'You need to authenticate to perform this action'
       end

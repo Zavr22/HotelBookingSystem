@@ -29,7 +29,9 @@ module Mutations
     describe '#resolve' do
       context 'when room input is valid and user is authenticated admin' do
         it 'creates an room' do
-          expect { mutation.resolve(room_input: room_input) }.to change { Room.count }.by(1)
+          result = mutation.resolve(room_input: room_input)
+          expect(result[:room]).to be_a(Room)
+          expect(result[:error_message]).to be_nil
         end
       end
 

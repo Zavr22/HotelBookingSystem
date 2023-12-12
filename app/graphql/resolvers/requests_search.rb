@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require "search_object"
-require "search_object/plugin/graphql"
-require "graphql/query_resolver"
+require 'search_object'
+require 'search_object/plugin/graphql'
+require 'graphql/query_resolver'
 
 # class RequestSearch contains methods to filter requests
 class Resolvers::RequestsSearch
@@ -40,7 +40,7 @@ class Resolvers::RequestsSearch
     if RequestPolicy.new(@context[:current_user], nil).user_is_admin?
       Request.all
     else
-      raise GraphQL::ExecutionError, "You need to be admin to perform this action"
+      raise GraphQL::ExecutionError, 'You need to be admin to perform this action'
     end
   end
 end
