@@ -46,9 +46,7 @@ module Resolvers
     def normalize_filters(value, branches = [])
       scope = Room.free
       scope = scope.where(room_class: value[:room_class].to_s) if value[:room_class]
-      scope = scope.where(price: value[:min_price]..value[:max_price]) if value[:min_price] && value[:max_price]
-      scope = scope.where('rooms.price >= ?', value[:min_price]) if value[:min_price]
-      scope = scope.where('rooms.price <= ?', value[:max_price]) if value[:max_price]
+      scope = scope.where(price: value[:min_price]..(value[:max_price] || Float::INFINITY))
 
       branches << scope
 

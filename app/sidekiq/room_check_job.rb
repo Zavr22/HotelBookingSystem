@@ -6,11 +6,8 @@ class RoomCheckJob
 
   def perform
     Invoice.transaction do
-      invoices = Invoice.where(is_deleted: false).where('request.check_out_date < ?', Date.today)
-      room_ids = invoices.joins(:request).pluck(:room_id)
-
-      invoices.update_all(is_deleted: true)
-      Room.where(id: room_ids).update_all('free_count = free_count + 1')
+      Invoice.where(is_deleted: false).joins(:request).where('requests.check_out_date < ?', Date.today).update_all(is_deleted: true)
+      Room.increment_counter(:free_count, Invoice.where(is_deleted: true).joins(:request).select(:room_id))
     end
   end
 end
