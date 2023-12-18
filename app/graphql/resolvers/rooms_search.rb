@@ -36,8 +36,7 @@ module Resolvers
       value 'room_class_DESC'
     end
 
-    option :sort, type: RoomSort, default: 'price_ASC'
-
+    option :sort, type: RoomSort
     def apply_filter(scope, value)
       branches = normalize_filters(value).reduce { |a, b| a.and(b) }
       scope.merge branches

@@ -13,6 +13,10 @@ RSpec.describe Types::QueryType do
       FactoryBot.create(:room, room_class: 'Luxury', price: 200)
     end
 
+    def execute_query(query)
+      HotelSystemSchema.execute(query, context: context).to_h
+    end
+
     it 'returns all rooms when no filters or sorting are applied' do
       query =
         %(query {
@@ -23,7 +27,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      result = HotelSystemSchema.execute(query, context: context).to_h
+      result = execute_query(query)
       expect(result.dig('data', 'allRooms')&.length).to eq(Room.count)
     end
 
@@ -36,7 +40,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      filtered_result = HotelSystemSchema.execute(query_with_filter, context: context).to_h
+      filtered_result = execute_query(query_with_filter)
       puts filtered_result
       puts Room.where(room_class: 'Luxury')
       expect(filtered_result.dig('data', 'allRooms')&.length).to eq(Room.where(room_class: 'Standard').count)
@@ -52,7 +56,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      filtered_result = HotelSystemSchema.execute(query_with_filter, context: context).to_h
+      filtered_result = execute_query(query_with_filter)
       puts filtered_result
       expect(filtered_result.dig('data', 'allRooms')&.length).to eq(2)
       expect(filtered_result.dig('data', 'allRooms')[0]['price']).to be >= 150
@@ -68,8 +72,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      sorted_result = HotelSystemSchema.execute(query_with_sort, context: context).to_h
-      print sorted_result
+      sorted_result = execute_query(query_with_sort)
       expect(sorted_result.dig('data', 'allRooms')&.length).to eq(Room.count)
       expect(sorted_result.dig('data', 'allRooms').map { |room| room['price'] }).to eq([100, 150, 200])
     end
@@ -83,7 +86,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      sorted_result = HotelSystemSchema.execute(query_with_sort, context: context).to_h
+      sorted_result = execute_query(query_with_sort)
 
       expect(sorted_result.dig('data', 'allRooms')&.length).to eq(Room.count)
       expect(sorted_result.dig('data', 'allRooms').map { |room| room['roomClass'] }).to eq(%w[Luxury Standard Economy])

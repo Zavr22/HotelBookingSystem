@@ -6,8 +6,18 @@ RSpec.describe Types::QueryType do
   describe 'allRequests' do
     let(:current_user) { FactoryBot.create(:user, role: 'admin') }
     let(:context) { { current_user: current_user } }
-    let(:query) do
-      %(query {
+
+    def execute_query(query)
+      HotelSystemSchema.execute(query, context: context).to_h
+    end
+
+    before do
+      FactoryBot.create_list(:request, 3)
+    end
+
+    it 'returns all requests when no filters are applied' do
+      query =
+        %(query {
         allRequests {
           id
           userId
@@ -17,17 +27,7 @@ RSpec.describe Types::QueryType do
           updatedAt
         }
       })
-    end
-
-    subject(:result) do
-      HotelSystemSchema.execute(query, context: context).to_h
-    end
-
-    before do
-      FactoryBot.create_list(:request, 3)
-    end
-
-    it 'returns all requests when no filters are applied' do
+      result = execute_query(query)
       expect(result.dig('data', 'allRequests')&.length).to eq(Request.count)
     end
 
@@ -45,7 +45,7 @@ RSpec.describe Types::QueryType do
         }
       })
 
-      filtered_result = HotelSystemSchema.execute(query_with_filter, context: context).to_h
+      filtered_result = execute_query(query_with_filter)
 
       expect(filtered_result.dig('data', 'allRequests')&.length).to eq(Request.count)
     end
