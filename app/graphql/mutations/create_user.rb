@@ -10,7 +10,8 @@ module Mutations
 
     argument :auth_provider, AuthProviderSignupData, required: false
 
-    type Types::UserType
+    field :user, Types::UserType, null: true
+    field :error_message, String, null: true
 
     def resolve(auth_provider: nil)
       user = User.new(

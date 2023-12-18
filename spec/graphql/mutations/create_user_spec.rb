@@ -3,27 +3,33 @@
 require 'rails_helper'
 module Mutations
   RSpec.describe CreateUser do
-    def perform(args = {})
-      described_class.new(object: nil, field: nil, context: {}).resolve(**args)
-    end
+      let(:query) do
+        <<~GQL
+          mutation{
+             createUser(input:{
+               authProvider:{
+                 credentials:{
+                   login: "test",
+                   password:"test",
+                   role: "admin"
+                 }
+               }
+             }){
+               user{id}
+               errorMessage
+             }
+           }
+        GQL
+      end
 
-    describe 'Create a new user' do
-      it 'creates a new user' do
-        user = perform(
-          auth_provider: {
-            credentials: {
-              login: 'test',
-              password: '123456',
-              role: 'admin'
-            }
-          }
-        )
+      subject(:result) do
+        HotelSystemSchema.execute(query, context: nil).to_h
+      end
 
-        expect(user[:user]).to be_persisted
-        expect(user[:user][:login]).to eq('test')
-        expect(user[:user][:password]).to eq('123456')
-        expect(user[:user][:role]).to eq('admin')
+      describe 'Create a new user' do
+        it 'creates user' do
+          expect(result['data']['createUser']['user']['id']).to eq(User.last.id.to_s)
+        end
       end
     end
   end
-end

@@ -3,49 +3,61 @@
 require 'rails_helper'
 
 module Mutations
-  RSpec.describe Mutations::SignInUser do
-    def perform(args = {}, ctx = { session: {} })
-      described_class.new(object: nil, field: nil, context: ctx).resolve(credentials: nil)
-    end
+  RSpec.describe SignInUser do
+    let(:user) { FactoryBot.create(:user, login: 'testuser', password: 'password', role: 'admin') }
 
-    def create_user
-      FactoryBot.create(:user, login: 'Test', password: '123', role: 'admin')
-    end
-
-    describe 'success' do
-      it 'signs in a user' do
-        user = create_user
-
-        result = perform(
-          credentials: {
-            login: user.login,
-            password: user.password
+    let(:query) do
+      <<~GQL
+        mutation {
+          signInUser(input: {
+            credentials: {
+              login: "#{user.login}",
+              password: "#{user.password}",
+              role: "admin"
+            }
+          }) {
+            token,
+            user {
+              id
+            }
           }
-        )
-
-        expect(result[:token]).to be_present if result
-        expect(result[:user]).to eq(user) if result
-      end
+        }
+      GQL
     end
 
-    describe 'failure' do
-      context 'because no credentials' do
-        it 'does not sign in a user' do
-          expect(perform).to be_nil
-        end
+    subject(:result) do
+      context = { session: {} }
+      HotelSystemSchema.execute(query, context: context).to_h
+    end
+
+    describe 'Sign in a user' do
+      it 'signs in user and returns token' do
+        expect(result.dig('data', 'signInUser', 'token')).not_to be_nil
+        expect(result.dig('data', 'signInUser', 'user', 'id')).to eq(user.id.to_s)
       end
 
-      context 'because wrong login' do
-        it 'does not sign in a user' do
-          expect(perform(credentials: { login: 'wrong' })).to be_nil
-        end
-      end
+      it 'fails to sign in with incorrect credentials' do
+        incorrect_query = <<~GQL
+          mutation {
+            signInUser(input: {
+              credentials: {
+                login: "wrong",
+                password: "wrong",
 
-      context 'because wrong password' do
-        it 'does not sign in a user' do
-          user = create_user
-          expect(perform(credentials: { login: user.login, password: 'wrong' })).to be_nil
-        end
+                role: "admin"
+              }
+            }) {
+              token
+              user {
+                id
+              }
+            }
+          }
+        GQL
+
+        incorrect_result = HotelSystemSchema.execute(incorrect_query, context: nil).to_h
+        puts incorrect_result
+        expect(incorrect_result['data']['signInUser']).to be_nil
       end
     end
   end

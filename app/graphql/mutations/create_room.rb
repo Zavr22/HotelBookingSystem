@@ -6,7 +6,8 @@ module Mutations
     null true
 
     argument :room_input, Types::RoomInput, required: false
-
+    field :room, Types::RoomType, null: true
+    field :error_message, String, null: true
     def resolve(room_input: nil)
       return unless room_input
 
@@ -33,8 +34,8 @@ module Mutations
         }
       else
         {
-        room: nil,
-        error_message: room.errors.full_messages
+          room: nil,
+          error_message: room.errors.full_messages
         }
       end
     end

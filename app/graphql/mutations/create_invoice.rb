@@ -7,7 +7,8 @@ module Mutations
 
     argument :invoice_input, Types::InvoiceInput, required: false
 
-    type Types::InvoiceType
+    field :invoice, Types::InvoiceType, null: true
+    field :error_message, String, null: true
 
     def resolve(invoice_input: nil)
       return unless invoice_input
