@@ -9,15 +9,17 @@ RSpec.describe RoomCheckJob, type: :job do
     it 'updates room free_count for expired invoices' do
       room = FactoryBot.create(:room, free_count: 5)
       user = FactoryBot.create(:user)
-      request = FactoryBot.create(:request, check_out_date: Date.yesterday, room: room, user: user)
-      invoice = FactoryBot.create(:invoice, request: request, is_deleted: false, room: room)
+      3.times do
+        request = FactoryBot.create(:request, check_out_date: Date.yesterday, room: room, user: user)
+        FactoryBot.create(:invoice, request: request, is_deleted: false, room: room)
+      end
 
       Sidekiq::Testing.inline! do
         worker.perform
 
         room.reload
 
-        expect(room.free_count).to eq(6)
+        expect(room.free_count).to eq(8)
       end
     end
 
@@ -25,15 +27,35 @@ RSpec.describe RoomCheckJob, type: :job do
       room = FactoryBot.create(:room, free_count: 5)
       user = FactoryBot.create(:user)
       request = FactoryBot.create(:request, check_out_date: Date.tomorrow, room: room, user: user)
-      invoice = FactoryBot.create(:invoice, request: request, room: room)
+      FactoryBot.create(:invoice, request: request, room: room)
 
       Sidekiq::Testing.inline! do
         worker.perform
 
-
         room.reload
 
         expect(room.free_count).to eq(5)
+      end
+    end
+
+    it 'correctly updates room free_count with a mix of expired and non-expired invoices' do
+      room = FactoryBot.create(:room, free_count: 5)
+      user = FactoryBot.create(:user)
+
+      2.times do
+        request = FactoryBot.create(:request, check_out_date: Date.yesterday, room: room, user: user)
+        FactoryBot.create(:invoice, request: request, is_deleted: false, room: room)
+      end
+
+      request_future = FactoryBot.create(:request, check_out_date: Date.tomorrow, room: room, user: user)
+      FactoryBot.create(:invoice, request: request_future, room: room)
+
+      Sidekiq::Testing.inline! do
+        worker.perform
+
+        room.reload
+
+        expect(room.free_count).to eq(7)
       end
     end
   end

@@ -5,10 +5,32 @@ class RoomCheckJob
   include Sidekiq::Job
 
   def perform
-    Invoice.transaction do
-      Invoice.where(is_deleted: false).joins(:request).where('requests.check_out_date < ?', Date.today).update_all(is_deleted: true)
-      Room.increment_counter(:free_count, Invoice.where(is_deleted: true).joins(:request).select(:room_id))
-    end
+    ActiveRecord::Base.connection.execute <<-SQL
+      UPDATE rooms
+      SET free_count = free_count + (
+        SELECT COUNT(*)
+        FROM invoices
+        INNER JOIN requests ON invoices.request_id = requests.id
+        WHERE invoices.room_id = rooms.id
+          AND invoices.is_deleted = FALSE
+          AND requests.check_out_date < CURRENT_DATE
+      )
+      WHERE id IN (
+        SELECT DISTINCT requests.room_id
+        FROM invoices
+        INNER JOIN requests ON invoices.request_id = requests.id
+        WHERE invoices.is_deleted = FALSE
+        AND requests.check_out_date < CURRENT_DATE
+      );
+    SQL
+
+    ActiveRecord::Base.connection.execute <<-SQL
+      UPDATE invoices
+      SET is_deleted = TRUE
+      FROM requests
+      WHERE invoices.request_id = requests.id
+        AND invoices.is_deleted = FALSE
+        AND requests.check_out_date < CURRENT_DATE;
+    SQL
   end
 end
-

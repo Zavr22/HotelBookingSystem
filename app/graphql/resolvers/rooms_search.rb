@@ -29,14 +29,19 @@ module Resolvers
     option :filter, type: RoomsFilter, with: :apply_filter
 
     # class RoomSort defines values for sorting rooms
-    class RoomSort < ::Types::BaseEnum
-      value 'price_ASC'
-      value 'price_DESC'
-      value 'room_class_ASC'
-      value 'room_class_DESC'
+    class RoomSortInput < Types::BaseInputObject
+      argument :room_class, Types::SortDirectionType, required: false
+      argument :price, Types::SortDirectionType, required: false
     end
 
-    option :sort, type: RoomSort
+    option :sort, type: RoomSortInput, with: :apply_sort
+
+    def apply_sort(scope, value)
+      scope = apply_sort_with_room_class_asc(scope) if value[:room_class] == 'ASC'
+      scope = apply_sort_with_room_class_desc(scope) if value[:room_class] == 'DESC'
+      scope = scope.order(price: value[:price]) if value[:price].present?
+      scope
+    end
     def apply_filter(scope, value)
       branches = normalize_filters(value).reduce { |a, b| a.and(b) }
       scope.merge branches

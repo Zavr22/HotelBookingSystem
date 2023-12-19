@@ -65,7 +65,7 @@ RSpec.describe Types::QueryType do
 
     it 'returns rooms sorted by price in ascending order' do
       query_with_sort = %(query {
-        allRooms(sort: price_ASC) {
+        allRooms(sort: {price: ASC}) {
           id
           roomClass
           price
@@ -79,7 +79,7 @@ RSpec.describe Types::QueryType do
 
     it 'returns rooms sorted by room class in descending order' do
       query_with_sort = %(query {
-        allRooms(sort: room_class_DESC) {
+        allRooms(sort: {roomClass: DESC}) {
           id
           roomClass
           price
@@ -90,6 +90,43 @@ RSpec.describe Types::QueryType do
 
       expect(sorted_result.dig('data', 'allRooms')&.length).to eq(Room.count)
       expect(sorted_result.dig('data', 'allRooms').map { |room| room['roomClass'] }).to eq(%w[Luxury Standard Economy])
+    end
+
+    it 'should return rooms sorted ny two parameters' do
+      FactoryBot.create(:room, room_class: 'Luxury', price: 180)
+      FactoryBot.create(:room, room_class: 'Luxury', price: 220)
+      FactoryBot.create(:room, room_class: 'Standard', price: 110)
+      FactoryBot.create(:room, room_class: 'Economy', price: 140)
+
+      query = %(query{
+                  allRooms(sort: {
+                    roomClass: DESC,
+                    price: DESC
+                  }) {
+                    id
+                    roomClass
+                    price
+                  }
+                })
+      result = execute_query(query)
+      puts result
+      rooms = result.dig('data', 'allRooms')
+      expect(rooms.length).to eq(7)
+      expect(rooms[0]['roomClass']).to eq('Luxury')
+      expect(rooms[1]['roomClass']).to eq('Luxury')
+      expect(rooms[2]['roomClass']).to eq('Luxury')
+      expect(rooms[3]['roomClass']).to eq('Standard')
+      expect(rooms[4]['roomClass']).to eq('Standard')
+      expect(rooms[5]['roomClass']).to eq('Economy')
+      expect(rooms[6]['roomClass']).to eq('Economy')
+
+      expect(rooms[0]['price']).to eq(220)
+      expect(rooms[1]['price']).to eq(200)
+      expect(rooms[2]['price']).to eq(180)
+      expect(rooms[3]['price']).to eq(150)
+      expect(rooms[4]['price']).to eq(110)
+      expect(rooms[5]['price']).to eq(140)
+      expect(rooms[6]['price']).to eq(100)
     end
   end
 end
