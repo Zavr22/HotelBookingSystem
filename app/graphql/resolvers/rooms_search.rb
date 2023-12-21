@@ -6,6 +6,7 @@ require 'graphql/query_resolver'
 
 module Resolvers
   class RoomsSearch
+    include Sortable
 
     class << self
       def validate_directive_argument(arg_defn, value)
@@ -37,11 +38,22 @@ module Resolvers
     option :sort, type: RoomSortInput, with: :apply_sort
 
     def apply_sort(scope, value)
-      scope = apply_sort_with_room_class_asc(scope) if value[:room_class] == 'ASC'
-      scope = apply_sort_with_room_class_desc(scope) if value[:room_class] == 'DESC'
-      scope = scope.order(price: value[:price]) if value[:price].present?
-      scope
+      sort_values = value.to_h
+
+      sort_mappings = {
+        room_class: {
+          'ASC' => :apply_sort_with_room_class_asc,
+          'DESC' => :apply_sort_with_room_class_desc
+        },
+        price: {
+          'ASC' => :apply_sort_with_price_asc,
+          'DESC' => :apply_sort_with_price_desc
+        }
+      }
+
+      super(scope, sort_values, sort_mappings)
     end
+
     def apply_filter(scope, value)
       branches = normalize_filters(value).reduce { |a, b| a.and(b) }
       scope.merge branches
@@ -55,22 +67,6 @@ module Resolvers
       branches << scope
 
       branches
-    end
-
-    def apply_sort_with_price_asc(scope)
-      scope.order('price ASC')
-    end
-
-    def apply_sort_with_price_desc(scope)
-      scope.order('price DESC')
-    end
-
-    def apply_sort_with_room_class_asc(scope)
-      scope.order(Arel.sql('CASE WHEN room_class = \'Economy\' THEN 1 WHEN room_class = \'Standard\' THEN 2 WHEN room_class = \'Luxury\' THEN 3 ELSE 4 END ASC'))
-    end
-
-    def apply_sort_with_room_class_desc(scope)
-      scope.order(Arel.sql('CASE WHEN room_class = \'Economy\' THEN 1 WHEN room_class = \'Standard\' THEN 2 WHEN room_class = \'Luxury\' THEN 3 ELSE 4 END DESC'))
     end
 
     def fetch_results

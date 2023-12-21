@@ -7,7 +7,7 @@ require 'search_object/plugin/graphql'
 module Resolvers
   class InvoiceSearch
     include SearchObject.module(:graphql)
-
+    include Sortable
     class << self
       def validate_directive_argument(arg_defn, value)
         # empty method body
@@ -24,13 +24,30 @@ module Resolvers
     end
 
     # class InvoiceOrderBy is used to declare values for sorting invoices by date
-    class InvoiceOrderBy < ::Types::BaseEnum
-      value 'createdAt_ASC'
-      value 'createdAt_DESC'
+    class InvoiceSortInput < ::Types::BaseInputObject
+      argument :created_at, Types::SortDirectionType, required: false
+      argument :amount_due, Types::SortDirectionType, required: false
     end
 
     option :filter, type: InvoiceFilter, with: :apply_filter
-    option :orderBy, type: InvoiceOrderBy, default: 'createdAt_DESC'
+    option :sort, type: InvoiceSortInput, with: :apply_sort
+
+    def apply_sort(scope, value)
+      sort_values = value.to_h
+      puts sort_values
+      sort_mappings = {
+        created_at: {
+          'ASC' => :apply_order_by_with_created_at_asc,
+          'DESC' => :apply_order_by_with_created_at_desc
+        },
+        amount_due: {
+          'ASC' => :apply_order_by_with_amount_due_asc,
+          'DESC' => :apply_order_by_with_amount_due_desc
+        }
+      }
+
+      super(scope, sort_values, sort_mappings)
+    end
 
     def apply_filter(scope, value)
       branches = normalize_filters(value).reduce { |a, b| a.or(b) }
