@@ -63,14 +63,6 @@ module Resolvers
       branches
     end
 
-    def apply_order_by_with_created_at_asc(scope)
-      scope.order('created_at ASC')
-    end
-
-    def apply_order_by_with_created_at_desc(scope)
-      scope.order('created_at DESC')
-    end
-
     def fetch_results
       if InvoicePolicy.new(@context[:current_user], nil).user_is_admin?
         super
